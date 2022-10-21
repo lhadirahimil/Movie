@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.moreActor.MoreActorFragment">
+
+    <!--    close Button    -->
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_18mdp"
+        android:padding="@dimen/_8mdp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="@id/etSearch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/etSearch"
+        tools:ignore="ContentDescription" />
+
+    <!--  search Edit text  -->
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_49mdp"
+        android:layout_marginStart="@dimen/_23mdp"
+        android:layout_marginTop="@dimen/_29mdp"
+        android:layout_marginEnd="@dimen/_16mdp"
+        android:background="@drawable/et_radius_50"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/_10mdp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="left|center"
+        android:hint="Search a actors ..."
+        android:importantForAutofill="no"
+        android:lines="1"
+        android:paddingHorizontal="@dimen/_20mdp"
+        android:textColor="@color/white_text_color"
+        android:textColorHint="@color/text_hint_color"
+        android:textSize="@dimen/_12font_mdp"
+        app:layout_constraintLeft_toRightOf="@id/ivClose"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,RtlHardcoded,TextFields" />
+
+    <!--  recycler Actor List  -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerActors"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_30mdp"
+        tools:listitem="@layout/item_more_actors"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSearch" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

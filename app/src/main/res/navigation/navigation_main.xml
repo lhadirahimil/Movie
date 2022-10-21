@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/fragmentSplash">
+
+    <action
+        android:id="@+id/action_to_searchNavFragment"
+        app:destination="@id/searchNavFragment" />
+    <action
+        android:id="@+id/action_to_fragmentHome"
+        app:destination="@id/fragmentHome"
+        app:enterAnim="@anim/nav_default_enter_anim" />
+    <action
+        android:id="@+id/action_to_fragmentRegister"
+        app:destination="@id/fragmentRegister"
+        app:enterAnim="@anim/nav_default_enter_anim" />
+    <action
+        android:id="@+id/action_to_fragmentLogin"
+        app:destination="@id/fragmentLogin"
+        app:enterAnim="@anim/nav_default_enter_anim" />
+    <action
+        android:id="@+id/action_to_fragmentSaved"
+        app:destination="@id/fragmentSaved"
+        app:enterAnim="@anim/nav_default_enter_anim" />
+
+    <action
+        android:id="@+id/action_to_fragmentProfile"
+        app:destination="@id/fragmentProfile" />
+
+    <fragment
+        android:id="@+id/fragmentSplash"
+        android:name="com.hadirahimi.movie.ui.fragments.splash.FragmentSplash"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_fragmentSplash_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_to_actorFragment"
+        app:destination="@id/actorFragment"
+        app:enterAnim="@anim/nav_default_enter_anim" />
+
+    <action
+        android:id="@+id/action_to_fragmentMovie"
+        app:destination="@id/fragmentMovie" />
+
+    <action
+        android:id="@+id/action_to_moreActorFragment"
+        app:destination="@id/moreActorFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
+
+    <action
+        android:id="@+id/action_to_moreMovieFragment"
+        app:destination="@id/moreMovieFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
+
+    <action
+        android:id="@+id/action_to_fragmentSearch"
+        app:destination="@id/fragmentSearch"
+        app:enterAnim="@anim/nav_default_enter_anim" />
+
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.hadirahimi.movie.ui.fragments.home.FragmentHome"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentRegister"
+        android:name="com.hadirahimi.movie.ui.fragments.register.FragmentRegister"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.hadirahimi.movie.ui.fragments.login.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSaved"
+        android:name="com.hadirahimi.movie.ui.fragments.saved.FragmentSaved"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
+    <fragment
+        android:id="@+id/fragmentSearch"
+        android:name="com.hadirahimi.movie.ui.fragments.search.FragmentSearch"
+        android:label="fragment_search" />
+    <fragment
+        android:id="@+id/actorFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.actorSingle.ActorFragment"
+        android:label="fragment_actor"
+        tools:layout="@layout/fragment_actor">
+        <argument
+            android:name="Actor_id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentMovie"
+        android:name="com.hadirahimi.movie.ui.fragments.movieSingle.FragmentMovie"
+        android:label="fragment_movie"
+        tools:layout="@layout/fragment_movie">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/moreActorFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.moreActor.MoreActorFragment"
+        android:label="fragment_more_actor"
+        tools:layout="@layout/fragment_more_actor" />
+    <fragment
+        android:id="@+id/moreMovieFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.moreMovie.MoreMovieFragment"
+        android:label="fragment_more_movie"
+        tools:layout="@layout/fragment_more_movie">
+        <argument
+            android:name="movie_mode"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.welcome.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" />
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.hadirahimi.movie.ui.fragments.profile.FragmentProfile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragmentProfile_to_profileEditFragment"
+            app:destination="@id/profileEditFragment" />
+        <action
+            android:id="@+id/action_fragmentProfile_to_appAboutFragment"
+            app:destination="@id/appAboutFragment" />
+        <action
+            android:id="@+id/action_fragmentProfile_to_supportFragment"
+            app:destination="@id/supportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchNavFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.search_nav.SearchNavFragment"
+        android:label="fragment_search_nav"
+        tools:layout="@layout/fragment_search_nav" />
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.profile_edit.ProfileEditFragment"
+        android:label="fragment_profile_edit"
+        tools:layout="@layout/fragment_profile_edit" />
+    <fragment
+        android:id="@+id/appAboutFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.application_about.AppAboutFragment"
+        android:label="fragment_app_about"
+        tools:layout="@layout/fragment_app_about" />
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.support.SupportFragment"
+        android:label="fragment_support"
+        tools:layout="@layout/fragment_support" />
+
+
+</navigation>

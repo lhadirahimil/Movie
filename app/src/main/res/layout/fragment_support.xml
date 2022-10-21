@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.support.SupportFragment">
+
+    <!--  scroll view -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <!--    container    -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--  back button  -->
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="@dimen/_31mdp"
+                android:layout_height="@dimen/_31mdp"
+                android:layout_marginStart="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_21mdp"
+                android:padding="@dimen/_7mdp"
+                android:src="@drawable/ic_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <!--  fragment Title  -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16mdp"
+                android:fontFamily="@font/roboto_medium"
+                android:lines="1"
+                android:text="@string/support"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/_16font_mdp"
+                app:layout_constraintBottom_toBottomOf="@id/ivBack"
+                app:layout_constraintStart_toEndOf="@id/ivBack"
+                app:layout_constraintTop_toTopOf="@id/ivBack" />
+
+            <!--        header text        -->
+            <TextView
+                android:id="@+id/tvHeaderText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_61mdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/you_can_send_us_your_criticism_opinion_and_message_and_we_will_answer_you_quickly_the_answer_will_be_sent_to_your_email"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/_16font_mdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivBack" />
+
+            <!--  userName Input  -->
+            <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_53mdp"
+                android:layout_marginHorizontal="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_34mdp"
+                android:drawablePadding="@dimen/_16mdp"
+                android:background="@drawable/et_design"
+                android:drawableStart="@drawable/ic_user_support"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/user_name"
+                android:paddingHorizontal="@dimen/_16mdp"
+                android:textColor="@color/text_hint_color"
+                android:textColorHint="@color/text_hint_color"
+                android:textSize="@dimen/_14font_mdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvHeaderText"
+                tools:ignore="Autofill,TextFields" />
+
+            <!--  email Input  -->
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_53mdp"
+                android:layout_marginHorizontal="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_16mdp"
+                android:drawablePadding="@dimen/_16mdp"
+                android:background="@drawable/et_design"
+                android:drawableStart="@drawable/ic_sms"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/email"
+                android:paddingHorizontal="@dimen/_16mdp"
+                android:textColor="@color/text_hint_color"
+                android:textColorHint="@color/text_hint_color"
+                android:textSize="@dimen/_14font_mdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etUserName"
+                tools:ignore="Autofill,TextFields" />
+
+            <!--  email Input  -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_text"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/etEmail"
+                android:layout_marginTop="@dimen/_16mdp"
+                android:layout_marginHorizontal="@dimen/_16mdp"
+                android:background="@drawable/et_design"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="@dimen/_24mdp"
+                    android:layout_height="@dimen/_24mdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/_12mdp"
+                    android:layout_marginTop="@dimen/_16mdp"
+                    android:src="@drawable/ic_text"
+                    tools:ignore="ContentDescription" />
+                <EditText
+                    android:id="@+id/etText"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_139mdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/text"
+                    android:paddingHorizontal="@dimen/_16mdp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@color/backgroundSoft"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/text_hint_color"
+                    android:layout_marginVertical="@dimen/_20mdp"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="@dimen/_14font_mdp"
+                    android:gravity="top|start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/icon"
+                    tools:ignore="Autofill,TextFields" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--  Send Button  -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGetStart"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55mdp"
+                android:layout_marginHorizontal="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_24mdp"
+                android:background="@drawable/btn_purple"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/send"
+                android:enabled="false"
+                android:textColor="@color/white_text_color"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_16font_mdp"
+                app:layout_constraintTop_toBottomOf="@id/container_text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

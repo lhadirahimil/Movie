@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/bg_dark_gradient.xml" value="0.16" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/bg_dark_gradient_movie_single.xml" value="0.16" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/bg_gray.xml" value="0.21" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/bg_purple.xml" value="0.21" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/bottom_nav_background.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/bottom_nav_selected_.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/btn_purple.xml" value="0.2365" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/circle_gradient.xml" value="0.2365" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/custom_rating.xml" value="0.1615" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/custom_ratingbar.xml" value="0.2375" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/custom_ratingbar_empty.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/custom_ratingbar_filled.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/et_design.xml" value="0.2365" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/et_radius_100.xml" value="0.187" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/grdnt_border.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_archive_tick.xml" value="0.21" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_calendar.xml" value="0.16" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_car.xml" value="0.1845" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_clock.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_close.xml" value="0.225" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_home.xml" value="0.2365" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_logout.xml" value="0.219" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_profile.xml" value="0.1845" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_profile_nav.xml" value="0.196" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_saved.xml" value="0.1845" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_saved_nav.xml" value="0.199" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_search.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_search_bottom.xml" value="0.196" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_shadow_left.xml" value="0.21" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_sms.xml" value="0.21" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_star.xml" value="0.178" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_star_outline.xml" value="0.198" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_user.xml" value="0.21" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/ic_user_support.xml" value="0.219" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/item_genre.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/item_genre_background.xml" value="0.2365" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/item_genre_default.xml" value="0.2255" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/item_genre_selected.xml" value="0.2255" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/item_newest_background_gradient.xml" value="0.2255" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/item_search_mode.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/rating_empty.xml" value="0.1615" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/rating_fill.xml" value="0.1615" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/rounded_white_shape.xml" value="0.136" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/drawable/tab_search_mode_border.xml" value="0.2385" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_actor.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_app_about.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_application_about.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_login.xml" value="0.176" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_more_actor.xml" value="0.1" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_more_movie.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_movie.xml" value="0.176" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_profile_edit.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_register.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_saved.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_search.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_search_nav.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_splash.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_support.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/fragment_welcome.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_actors.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_being_honored.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_genre.xml" value="0.536" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_more_actors.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_more_movie.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_newest.xml" value="0.2" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_popular_movies.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_saved.xml" value="0.18982471141513468" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_search.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_selected_actors.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_selected_movie.xml" value="0.3291139240506329" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_selected_photos.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/item_similar_movies.xml" value="0.4" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/load_more.xml" value="0.19067977768277042" />
+        <entry key="..\:/Android Code/Movie/app/src/main/res/layout/search_empty.xml" value="0.18982471141513468" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

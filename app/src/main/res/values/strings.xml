@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Movie</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up">Sign up</string>
+    <string name="password">Password</string>
+    <string name="user_name">User name</string>
+    <string name="get_start">Get Start</string>
+    <string name="do_you_have_an_account">Do You Have An Account?</string>
+    <string name="dont_you_have_an_account">Don\'t You Have An Account?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="home">Home</string>
+    <string name="saved">Saved</string>
+    <string name="car">Car</string>
+    <string name="profile">Profile</string>
+    <string name="search_a_title">Search a title…</string>
+    <string name="popular_actors">Popular actors</string>
+    <string name="see_all">See all</string>
+    <string name="newest">Newest</string>
+    <string name="error_network_check_your_connection">Error Network! check Your Connection.</string>
+    <string name="try_again">try again</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="retry">Retry</string>
+    <string name="about">About</string>
+    <string name="selected_films_of_the_actor">Selected films of the actor</string>
+    <string name="selected_photos">Selected photos</string>
+    <string name="selected_actors">Selected actors</string>
+    <string name="similar_movies">Similar movies</string>
+    <string name="hello_hadi">Hello Hadi 👋</string>
+    <string name="ops_please_try_again">Ops! please try again!</string>
+    <string name="welcome_to_your_application">Welcome to your application</string>
+    <string name="in_this_application_you_can_see_the_new_movies_of_n_the_world_as_well_as_the_movies_that_are_being_n_screened_you_can_also_see_the_biography_of_your_n_favorite_actors">In this application, you can see the new movies of the world as well as the movies that are being screened. You can also see the biography of your favorite actors</string>
+    <string name="nothing_found">Nothing found</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="app_subscription">App subscription</string>
+    <string name="support">Support</string>
+    <string name="application_about">Application about</string>
+    <string name="search_a_actors">Search a actors ...</string>
+    <string name="profile_edit">Profile Edit</string>
+    <string name="user_name_edit">User name</string>
+    <string name="log_out">Log out</string>
+    <string name="you_can_send_us_your_criticism_opinion_and_message_and_we_will_answer_you_quickly_the_answer_will_be_sent_to_your_email">You can send us your criticism, opinion and message and we will answer you quickly The answer will be sent to your email</string>
+    <string name="email">email</string>
+    <string name="text">text</string>
+    <string name="send">Send</string>
+
+</resources>

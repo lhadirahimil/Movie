@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_180mdp"
+    android:layout_height="@dimen/_231mdp"
+    android:layout_marginHorizontal="@dimen/_15mdp"
+    app:cardCornerRadius="12dp">
+<!--    android:layout_width="@dimen/_180mdp"-->
+<!--    android:layout_height="@dimen/_231mdp"-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.jackandphantom.carouselrecyclerview.view.ReflectionImageView
+            android:id="@+id/imageCover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+
+        <!--    layout data    -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_56mdp"
+            android:layout_margin="@dimen/_8mdp"
+            android:background="@drawable/item_newest_background_gradient"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <!--    movie title   -->
+            <TextView
+                android:id="@+id/tvMovieName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8mdp"
+                android:fontFamily="@font/roboto_medium"
+                tools:text="movie name"
+                android:textColor="@color/white"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="@dimen/_12font_mdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tvMovieStar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--    movie rate   -->
+            <TextView
+                android:id="@+id/tvMovieStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8mdp"
+                android:drawablePadding="@dimen/_3mdp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="4/5"
+                android:textColor="@color/gold"
+                android:textSize="@dimen/_10font_mdp"
+                app:drawableLeftCompat="@drawable/ic_star"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--   movie genre   -->
+            <TextView
+                android:id="@+id/tvDateAndGenre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8mdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Action / 2022"
+                android:textColor="@color/gray_text_color"
+                android:textSize="@dimen/_12font_mdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

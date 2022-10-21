@@ -1,0 +1,44 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.Movie" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/purple</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/background</item>
+        <!-- Customize your theme here. -->
+
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <!--  tabLayout Theme  -->
+    <style name="TabLayoutTheme" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!--  actor image view Theme  -->
+    <style name="themeActorPoster">
+        <item name="cornerSizeBottomLeft">@dimen/_25mdp</item>
+        <item name="cornerSizeBottomRight">@dimen/_25mdp</item>
+    </style>
+
+    <style name="themeMoviePoster">
+        <item name="cornerSize">@dimen/_12mdp</item>
+    </style>
+
+
+    <!--  custom ratingbar  -->
+    <style name="CustomRatingBarStyle" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_rating</item>
+        <item name="android:minHeight">13dip</item>
+        <item name="android:maxHeight">25dip</item>
+        <item name="android:minWidth">13dip</item>
+        <item name="android:maxWidth">25dip</item>
+    </style>
+</resources>

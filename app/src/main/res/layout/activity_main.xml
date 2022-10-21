@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.MainActivity">
+
+    <!--  for show all fragments  -->
+    <fragment
+        android:id="@+id/navHost"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/navigation_main"
+        tools:ignore="FragmentTagUsage" />
+
+
+    <!-- Custom Bottom Navigation -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_68mdp"
+        android:background="@drawable/bottom_nav_background"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="DisableBaselineAlignment">
+
+        <!--    Home Item    -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/itemHome"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/itemSaved">
+
+            <!--      item Container      -->
+            <LinearLayout
+                android:id="@+id/homeSelected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/bottom_nav_selected_"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10mdp"
+                android:paddingVertical="@dimen/_8mdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseCompoundDrawables">
+                <!--     Nav Icon      -->
+                <ImageView
+                    android:id="@+id/ivIconHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home"
+                    app:layout_constraintBottom_toTopOf="@id/tvTitle"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/bottom_nav_selected_color"
+                    tools:ignore="ContentDescription" />
+
+                <!--      Nav Title      -->
+                <TextView
+                    android:id="@+id/tvTitleHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3mdp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/home"
+                    android:textColor="@color/bottom_nav_selected_color"
+                    android:textSize="@dimen/_13font_mdp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivIconHome" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--    Saved Item    -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/itemSaved"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toRightOf="@id/itemHome"
+            app:layout_constraintRight_toLeftOf="@id/itemSearch">
+
+            <!--      item Container      -->
+            <LinearLayout
+                android:id="@+id/savedSelected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_10mdp"
+                android:paddingVertical="@dimen/_8mdp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseCompoundDrawables">
+                <!--     Nav Icon      -->
+                <ImageView
+                    android:id="@+id/ivIconSaved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_saved_nav"
+                    app:layout_constraintBottom_toTopOf="@id/tvTitle"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/bottom_nav_selected_color"
+                    tools:ignore="ContentDescription" />
+
+                <!--      Nav Title      -->
+                <TextView
+                    android:id="@+id/tvTitleSaved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/saved"
+                    android:textColor="@color/bottom_nav_selected_color"
+                    android:textSize="@dimen/_14font_mdp"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_3mdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivIconSaved" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--    Car Item    -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/itemSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toRightOf="@id/itemSaved"
+            app:layout_constraintRight_toLeftOf="@id/itemProfile">
+
+
+            <!--      item Container      -->
+            <LinearLayout
+                android:id="@+id/searchSelected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_10mdp"
+                android:paddingVertical="@dimen/_8mdp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseCompoundDrawables">
+                <!--     Nav Icon      -->
+                <ImageView
+                    android:id="@+id/ivIconSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_nav"
+                    app:layout_constraintBottom_toTopOf="@id/tvTitle"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/bottom_nav_selected_color"
+                    tools:ignore="ContentDescription" />
+
+                <!--      Nav Title      -->
+                <TextView
+                    android:id="@+id/tvTitleSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_marginStart="@dimen/_3mdp"
+                    android:text="Search"
+                    android:textColor="@color/bottom_nav_selected_color"
+                    android:textSize="@dimen/_14font_mdp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivIconSearch"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--    Profile Item    -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/itemProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toRightOf="@id/itemSearch"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <!--      item Container      -->
+            <LinearLayout
+                android:id="@+id/profileSelected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_10mdp"
+                android:paddingVertical="@dimen/_8mdp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseCompoundDrawables">
+                <!--     Nav Icon      -->
+
+                <!--      Nav Title      -->
+                <ImageView
+                    android:id="@+id/ivIconProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_profile_nav"
+                    app:layout_constraintBottom_toTopOf="@id/tvTitle"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/bottom_nav_selected_color"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tvTitleProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/profile"
+                    android:textColor="@color/bottom_nav_selected_color"
+                    android:layout_marginStart="@dimen/_3mdp"
+                    android:textSize="@dimen/_14font_mdp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivIconProfile" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--  Network Error Layout  -->
+    <LinearLayout
+        android:id="@+id/layoutNetwork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="@color/background"
+        android:weightSum="10"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16mdp"
+            android:layout_weight="6.5"
+            android:drawablePadding="@dimen/_8mdp"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingVertical="@dimen/_10mdp"
+            android:text="@string/error_network_check_your_connection"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/_12font_mdp"
+            app:drawableLeftCompat="@drawable/ic_round_wifi_off_24" />
+
+        <TextView
+            android:id="@+id/checkAgain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16mdp"
+            android:layout_weight="3.5"
+            android:drawablePadding="@dimen/_8mdp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="end|center"
+            android:paddingVertical="@dimen/_8mdp"
+            android:text="@string/try_again"
+            android:textColor="@color/purple2_text_color"
+            android:textSize="@dimen/_12font_mdp"
+            app:drawableRightCompat="@drawable/ic_check" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

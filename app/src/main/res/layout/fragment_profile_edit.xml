@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.profile_edit.ProfileEditFragment">
+    <!--scroll view-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <!--Container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--  back button  -->
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="@dimen/_31mdp"
+                android:layout_height="@dimen/_31mdp"
+                android:layout_marginStart="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_25mdp"
+                android:background="@drawable/btn_purple"
+                android:padding="@dimen/_6mdp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <!--  fragment Title  -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16mdp"
+                android:fontFamily="@font/roboto_medium"
+                android:lines="1"
+                android:text="@string/profile_edit"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/_16font_mdp"
+                app:layout_constraintBottom_toBottomOf="@id/ivBack"
+                app:layout_constraintStart_toEndOf="@id/ivBack"
+                app:layout_constraintTop_toTopOf="@id/ivBack" />
+
+            <!--  user Avatar  -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userProfile"
+                android:layout_width="@dimen/_81mdp"
+                android:layout_height="@dimen/_81mdp"
+                android:layout_marginTop="@dimen/_50mdp"
+                android:background="@drawable/rounded_white_shape"
+                android:src="@drawable/ic_avatar_profile"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+            <!--  edit profile button  -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/_26mdp"
+                android:layout_height="@dimen/_26mdp"
+                android:src="@drawable/ic_edit_profile"
+                app:layout_constraintBottom_toBottomOf="@id/userProfile"
+                app:layout_constraintRight_toRightOf="@id/userProfile" />
+
+            <!--  user name   -->
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12mdp"
+                android:fontFamily="@font/roboto_medium"
+                android:lines="1"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/_16font_mdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userProfile"
+                tools:text="Hadi Rahimi" />
+
+
+            <!--  user name Edit   -->
+            <TextView
+                android:id="@+id/tvUserNameEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_37mdp"
+                android:fontFamily="@font/roboto_medium"
+                android:lines="1"
+                android:text="@string/user_name_edit"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/_14font_mdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+
+            <!--  user name edit icon  -->
+            <ImageView
+                android:id="@+id/ivEditUserName"
+                android:layout_width="@dimen/_24mdp"
+                android:layout_height="@dimen/_24mdp"
+                android:layout_marginEnd="@dimen/_16mdp"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="@id/tvUserNameEdit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvUserNameEdit"
+                tools:ignore="ContentDescription" />
+
+            <!--  line  -->
+            <FrameLayout
+                android:id="@+id/lineUserName"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_28mdp"
+                android:background="@color/lineColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUserNameEdit" />
+
+
+            <!--  user name Edit   -->
+            <TextView
+                android:id="@+id/tvPasswordEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_37mdp"
+                android:fontFamily="@font/roboto_medium"
+                android:lines="1"
+                android:text="@string/password"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/_14font_mdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lineUserName" />
+
+            <!--  user name edit icon  -->
+            <ImageView
+                android:layout_width="@dimen/_24mdp"
+                android:layout_height="@dimen/_24mdp"
+                android:layout_marginEnd="@dimen/_16mdp"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="@id/tvPasswordEdit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvPasswordEdit"
+                tools:ignore="ContentDescription" />
+
+            <!--  line  -->
+            <FrameLayout
+                android:id="@+id/linePassword"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/_16mdp"
+                android:layout_marginTop="@dimen/_28mdp"
+                android:background="@color/lineColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPasswordEdit" />
+
+            <!--  logout  -->
+            <TextView
+                android:id="@+id/tvLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25mdp"
+                android:drawablePadding="@dimen/_10mdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/log_out"
+                android:textColor="@color/red_text_color"
+                android:textSize="@dimen/_14font_mdp"
+                app:drawableStartCompat="@drawable/ic_logout"
+                app:layout_constraintStart_toStartOf="@id/linePassword"
+                app:layout_constraintTop_toBottomOf="@id/linePassword" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

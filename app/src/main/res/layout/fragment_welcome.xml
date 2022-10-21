@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".ui.fragments.welcome.WelcomeFragment">
+
+
+    <!--  header image -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="45">
+        <!-- background shadows left-->
+        <ImageView
+            android:layout_width="@dimen/_123mdp"
+            android:layout_height="@dimen/_123mdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/shadow_left"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <!-- background shadows right-->
+        <ImageView
+            android:layout_width="@dimen/_123mdp"
+            android:layout_height="@dimen/_123mdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/shadow_right"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+        <!--    main image   -->
+        <ImageView
+            android:id="@+id/headerImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_5mdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/welcome_header"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--  Title   -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_34mdp"
+        android:layout_weight="7"
+        android:fontFamily="@font/roboto_bold"
+        android:lines="1"
+        android:text="@string/welcome_to_your_application"
+        android:textColor="@color/white_text_color"
+        android:textSize="@dimen/_18font_mdp" />
+
+    <!--  description   -->
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="38"
+        android:layout_marginHorizontal="@dimen/_16mdp"
+        android:layout_marginTop="@dimen/_16mdp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="top|center"
+        android:lineHeight="@dimen/_19font_mdp"
+        android:text="@string/in_this_application_you_can_see_the_new_movies_of_n_the_world_as_well_as_the_movies_that_are_being_n_screened_you_can_also_see_the_biography_of_your_n_favorite_actors"
+        android:textColor="@color/dark_white"
+        android:textSize="@dimen/_13font_mdp"
+        tools:targetApi="p" />
+
+    <!--  get start Button  -->
+    <Button
+        android:id="@+id/btnGetStart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_marginHorizontal="@dimen/_16mdp"
+        android:layout_marginBottom="@dimen/_24mdp"
+        android:background="@drawable/btn_purple"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/get_start"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_16font_mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description" />
+</LinearLayout>

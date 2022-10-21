@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_261mdp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/_12mdp"
+    app:cardBackgroundColor="@color/background_lighter"
+    app:cardCornerRadius="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_96mdp">
+        <!--    movie Image    -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/moviePoster"
+            android:layout_width="@dimen/_79mdp"
+            android:layout_height="@dimen/_79mdp"
+            android:layout_marginStart="@dimen/_8mdp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/themeMoviePoster"
+            tools:src="@tools:sample/backgrounds/scenic" />
+        <!--    movie Title   -->
+        <TextView
+            android:id="@+id/movieTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16mdp"
+            android:layout_marginTop="@dimen/_13mdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="start|center"
+            android:lines="1"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/_14font_mdp"
+            app:layout_constraintBottom_toTopOf="@id/movieRunTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/moviePoster"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="movie Title" />
+
+        <!--    movie Run Time   -->
+        <TextView
+            android:id="@+id/movieRunTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16mdp"
+            android:drawablePadding="@dimen/_5mdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="start|center"
+            android:lines="1"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/_12font_mdp"
+            app:drawableStartCompat="@drawable/ic_clock"
+            app:layout_constraintBottom_toTopOf="@id/movieRating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/moviePoster"
+            app:layout_constraintTop_toBottomOf="@id/movieTitle"
+            tools:text="2h 15m" />
+
+        <!--    movie rating  -->
+        <TextView
+            android:id="@+id/movieRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16mdp"
+            android:drawablePadding="@dimen/_5mdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="start|center"
+            android:lines="1"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/_12font_mdp"
+            app:drawableStartCompat="@drawable/ic_star_outline"
+            app:layout_constraintBottom_toBottomOf="@id/moviePoster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/moviePoster"
+            app:layout_constraintTop_toBottomOf="@id/movieRunTime"
+            tools:text="7.8/10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
