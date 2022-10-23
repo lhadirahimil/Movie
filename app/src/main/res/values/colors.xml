@@ -26,6 +26,7 @@
     <color name="star_foreground">  #f0a81c</color>
     <color name="star_background">  #ffffff</color>
     <color name="lineColor">  #1C1C43</color>
+    <color name="dialog_background">#11111F</color>
     <color name="background_lighter">#17172E</color>
     <color name="dark_white">#E9E9EE</color>
     <color name="dark_blue">#1E1E38</color>

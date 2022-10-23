@@ -37,7 +37,7 @@
     <string name="app_subscription">App subscription</string>
     <string name="support">Support</string>
     <string name="application_about">Application about</string>
-    <string name="search_a_actors">Search a actors ...</string>
+    <string name="search_a_actors">Search a actors …</string>
     <string name="profile_edit">Profile Edit</string>
     <string name="user_name_edit">User name</string>
     <string name="log_out">Log out</string>
@@ -45,5 +45,8 @@
     <string name="email">email</string>
     <string name="text">text</string>
     <string name="send">Send</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="remove">Remove</string>
 
 </resources>

@@ -45,6 +45,7 @@
 
             <!--  edit profile button  -->
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/editProfile"
                 android:layout_width="@dimen/_26mdp"
                 android:layout_height="@dimen/_26mdp"
                 android:src="@drawable/ic_edit_profile"

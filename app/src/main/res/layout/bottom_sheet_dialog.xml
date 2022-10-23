@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_dialog_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40mdp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="@string/profile"
+        android:textColor="@color/white_text_color"
+        android:textSize="@dimen/_16font_mdp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_30mdp">
+
+        <!--     delete current photo   -->
+        <TextView
+            android:id="@+id/delete_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5mdp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="@string/remove"
+            android:textColor="@color/white_text_color"
+            app:drawableTint="@color/white_text_color"
+            app:drawableTopCompat="@drawable/ic_gallery_remove"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/fromGallery" />
+
+        <!--     gallery   -->
+        <TextView
+            android:id="@+id/fromGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5mdp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/gallery"
+            android:textColor="@color/white_text_color"
+            app:drawableTint="@color/white_text_color"
+            app:drawableTopCompat="@drawable/ic_gallery"
+            app:layout_constraintEnd_toStartOf="@+id/delete_photo"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/fromCamera" />
+
+        <!--     camera   -->
+        <TextView
+            android:id="@+id/fromCamera"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5mdp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="@string/camera"
+            android:textColor="@color/white_text_color"
+            app:drawableTint="@color/white_text_color"
+            app:drawableTopCompat="@drawable/ic_camera"
+            app:layout_constraintEnd_toStartOf="@+id/fromGallery"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

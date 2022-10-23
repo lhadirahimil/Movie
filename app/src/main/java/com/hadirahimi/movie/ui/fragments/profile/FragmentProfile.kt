@@ -1,13 +1,15 @@
 package com.hadirahimi.movie.ui.fragments.profile
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.hadirahimi.movie.R
+import com.hadirahimi.movie.databinding.BottomSheetDialogBinding
 import com.hadirahimi.movie.databinding.FragmentProfileBinding
 import com.hadirahimi.movie.ui.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,6 +41,10 @@ class FragmentProfile : Fragment()
         
         //init views
         binding.apply {
+            //edit profile photo click listener
+            editProfile.setOnClickListener {
+                setupBottomSheet()
+            }
             
             // item edit profile selected
             itemEditProfile.setOnClickListener {
@@ -67,5 +73,39 @@ class FragmentProfile : Fragment()
             }
         }
     }
+    
+    private fun setupBottomSheet()
+    {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val bottomSheetBinding = BottomSheetDialogBinding.inflate(layoutInflater)
+        dialog.setContentView(bottomSheetBinding.root)
+        dialog.show()
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.dialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+        
+        
+        setupBottomSheetClick(bottomSheetBinding)
+        
+    }
+    
+    private fun setupBottomSheetClick(bottomSheetBinding : BottomSheetDialogBinding)
+    {
+        bottomSheetBinding.apply {
+            fromCamera.setOnClickListener {
+                Toast.makeText(requireContext() , "from Camera" , Toast.LENGTH_SHORT).show()
+            }
+            fromGallery.setOnClickListener {
+                Toast.makeText(requireContext() , "from Gallery" , Toast.LENGTH_SHORT).show()
+            }
+            deletePhoto.setOnClickListener {
+                Toast.makeText(requireContext() , "delete" , Toast.LENGTH_SHORT).show()
+            }
+        }
+    
+    }
+    
     
 }

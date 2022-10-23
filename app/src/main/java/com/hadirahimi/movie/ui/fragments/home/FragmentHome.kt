@@ -102,7 +102,7 @@ class FragmentHome : Fragment()
     {
         super.onViewCreated(view , savedInstanceState)
         
-        // `init views
+        // init views
         binding.apply {
             
             // get last movie
