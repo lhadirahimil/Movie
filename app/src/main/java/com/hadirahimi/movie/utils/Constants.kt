@@ -7,7 +7,7 @@ object Constants
     const val TIMEOUT_TIME = 5L
     const val REGULAR = "regular"
     const val BOLD = "bold"
-    const val API_KEY = "95745664deacc0d57e6f6ae87945a871"
+    const val API_KEY = "YOUR_API_KEY"
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500/"
     
