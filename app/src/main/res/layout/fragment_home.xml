@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -42,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8mdp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="@string/hello_hadi"
+                tools:text="Hello Hadi 👋"
                 android:textColor="@color/white_text_color"
                 android:textSize="@dimen/_14font_mdp"
                 app:layout_constraintLeft_toRightOf="@id/ivProfile"
@@ -81,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_49mdp"
             android:layout_marginLeft="@dimen/_16mdp"
-            android:layout_marginTop="@dimen/_33mdp"
+            android:layout_marginTop="@dimen/_30mdp"
             android:layout_marginRight="@dimen/_16mdp"
             android:background="@drawable/et_radius_12"
             android:drawablePadding="@dimen/_10mdp"
@@ -93,7 +94,7 @@
             app:drawableLeftCompat="@drawable/ic_search"
             app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
 
-<!--            Last Movie card    -->
+        <!--            Last Movie card    -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardLastMovie"
             android:layout_width="match_parent"
@@ -180,7 +181,7 @@
             android:id="@+id/layout_popular_actors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_32mdp"
+            android:layout_marginTop="@dimen/_30mdp"
             app:layout_constraintTop_toBottomOf="@id/tvSearch">
             <!--text  :  Popular actors  -->
             <TextView
@@ -242,7 +243,7 @@
             android:id="@+id/tabGenre"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_32mdp"
-            android:layout_marginTop="@dimen/_35mdp"
+            android:layout_marginTop="@dimen/_30mdp"
             android:background="@color/background"
             android:overScrollMode="always"
             android:scrollbars="horizontal"
@@ -274,7 +275,7 @@
             android:id="@+id/layoutNewest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_32mdp"
+            android:layout_marginTop="@dimen/_28mdp"
             app:layout_constraintTop_toBottomOf="@id/tabGenre">
 
             <!-- text : Newest Movie  -->
@@ -324,6 +325,7 @@
                 style="@style/SpinKitView.Circle"
                 android:layout_width="@dimen/_35mdp"
                 android:layout_height="@dimen/_35mdp"
+                android:visibility="gone"
                 app:SpinKit_Color="@color/purple2_text_color"
                 app:layout_constraintBottom_toBottomOf="@id/recyclerNewest"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -336,7 +338,7 @@
             android:id="@+id/beingHonoredLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_32mdp"
+            android:layout_marginTop="@dimen/_25mdp"
             app:layout_constraintTop_toBottomOf="@id/layoutNewest">
 
             <!-- text : Popular Movie  -->
@@ -368,12 +370,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!--  recyclerview :  Popular Movie     -->
-            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
-                android:id="@+id/recyclerPopularMovies"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerPopularMovies"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_178mdp"
+                android:layout_height="@dimen/_230mdp"
                 android:layout_marginTop="@dimen/_24mdp"
                 android:layout_marginBottom="@dimen/_24mdp"
+                android:paddingEnd="@dimen/_110mdp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPopularMovies" />
@@ -386,10 +389,10 @@
                 android:layout_height="@dimen/_35mdp"
                 android:visibility="gone"
                 app:SpinKit_Color="@color/purple2_text_color"
-                app:layout_constraintBottom_toBottomOf="@id/recyclerPopularMovies"
+                app:layout_constraintBottom_toBottomOf="@id/viewPagerPopularMovies"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/recyclerPopularMovies" />
+                app:layout_constraintTop_toTopOf="@id/viewPagerPopularMovies" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,11 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_153mdp"
-    android:layout_height="@dimen/_178mdp"
-    android:layout_marginTop="@dimen/_20mdp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginVertical="@dimen/_10mdp"
+    android:layout_marginHorizontal="@dimen/_5mdp"
+    app:cardElevation="5dp"
     app:cardCornerRadius="12dp">
-<!--    android:layout_width="@dimen/_133mdp"-->
+    <!--    android:layout_width="@dimen/_133mdp"-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -75,10 +77,12 @@
                 android:layout_marginHorizontal="@dimen/_8mdp"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/gray_text_color"
+                android:lines="1"
+                android:ellipsize="end"
                 android:textSize="@dimen/_12font_mdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/tvMovieStar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tvMovieStar"
                 app:layout_constraintTop_toBottomOf="@id/tvMovieName"
                 tools:text="Action / 2022" />
 

@@ -11,6 +11,7 @@
     <color name="backgroundSoft">#22223C</color>
     <color name="text_hint_color">#B6B6B6</color>
     <color name="purple">#733FF0</color>
+    <color name="purple_reset_password">#8D62F4</color>
     <color name="bottomNavBackground">#99221347</color>
     <color name="bottom_nav_selected_color">#F3F2F5</color>
     <color name="bottom_nav_default_color">#CBCBCB</color>
@@ -33,4 +34,7 @@
     <color name="line_gray">#323232</color>
     <color name="disabled">#8B7AB5</color>
     <color name="red_text_color">#E52934</color>
+    <color name="bottom_sheet_swipe_color">#CECECE</color>
+    <color name="verify_description_color">#7171BB</color>
+    <color name="input_bg_purple">#57733FF0</color>
 </resources>

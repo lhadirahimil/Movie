@@ -8,6 +8,7 @@
     <!--scroll view-->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:id="@+id/scrollView"
         android:layout_height="match_parent"
         android:fillViewport="true">
         <!--Container-->
@@ -57,8 +58,9 @@
 
             <!--  edit profile button  -->
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="@dimen/_26mdp"
-                android:layout_height="@dimen/_26mdp"
+                android:id="@+id/ivUserProfileEdit"
+                android:layout_width="@dimen/_28mdp"
+                android:layout_height="@dimen/_28mdp"
                 android:src="@drawable/ic_edit_profile"
                 app:layout_constraintBottom_toBottomOf="@id/userProfile"
                 app:layout_constraintRight_toRightOf="@id/userProfile" />
@@ -136,6 +138,7 @@
 
             <!--  user name edit icon  -->
             <ImageView
+                android:id="@+id/ivEditPassword"
                 android:layout_width="@dimen/_24mdp"
                 android:layout_height="@dimen/_24mdp"
                 android:layout_marginEnd="@dimen/_16mdp"

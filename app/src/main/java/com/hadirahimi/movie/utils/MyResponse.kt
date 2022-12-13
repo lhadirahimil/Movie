@@ -15,6 +15,7 @@ data class MyResponse<out T>(
         {
             return MyResponse(Status.LOADING)
         }
+    
         
         fun <T> success(data : T?) : MyResponse<T>
         {

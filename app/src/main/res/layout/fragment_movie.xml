@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:id="@+id/scrollView"
     android:layoutDirection="ltr"
     tools:context=".ui.fragments.movieSingle.FragmentMovie">
 
@@ -18,7 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutMain"
             android:layout_width="match_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_height="match_parent">
             <!--    header layout    -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,6 +62,21 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
 
+                <TextView
+                    android:id="@+id/fragmentHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:lines="1"
+                    android:layout_marginStart="@dimen/_16mdp"
+                    android:text="@string/movie"
+                    android:textColor="@color/white_text_color"
+                    app:layout_constraintBottom_toBottomOf="@id/btnBack"
+                    android:textSize="@dimen/_16font_mdp"
+                    app:layout_constraintStart_toEndOf="@id/btnBack"
+                    app:layout_constraintTop_toTopOf="@id/btnBack" />
+
                 <!--    favorite Button    -->
                 <ImageView
                     android:id="@+id/ivFavorite"
@@ -70,6 +86,7 @@
                     android:layout_marginEnd="@dimen/_16mdp"
                     android:background="@drawable/bg_gray"
                     android:padding="@dimen/_5mdp"
+                    android:visibility="gone"
                     android:src="@drawable/ic_favorite"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -81,7 +98,7 @@
                     android:layout_width="@dimen/_31mdp"
                     android:layout_height="@dimen/_31mdp"
                     android:layout_marginTop="@dimen/_25mdp"
-                    android:layout_marginEnd="@dimen/_8mdp"
+                    android:layout_marginEnd="@dimen/_16mdp"
                     android:background="@drawable/bg_gray"
                     android:padding="@dimen/_5mdp"
                     android:src="@drawable/ic_saved"
@@ -105,9 +122,10 @@
                 <!--    Actor Name   -->
                 <TextView
                     android:id="@+id/movieName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_20mdp"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="@dimen/_40mdp"
                     android:layout_marginTop="@dimen/_16mdp"
                     android:ellipsize="end"
                     android:fontFamily="@font/roboto_bold"
@@ -334,7 +352,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerMoviesActors"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_126mdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20mdp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"

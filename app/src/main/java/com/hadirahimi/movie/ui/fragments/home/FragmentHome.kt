@@ -1,19 +1,19 @@
 package com.hadirahimi.movie.ui.fragments.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
+import androidx.datastore.dataStore
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.filter
-import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -23,24 +23,27 @@ import com.google.android.material.tabs.TabLayout
 import com.hadirahimi.movie.R
 import com.hadirahimi.movie.databinding.FragmentHomeBinding
 import com.hadirahimi.movie.models.home.ResponseGenre
+import com.hadirahimi.movie.models.home.ResponseUser
 import com.hadirahimi.movie.ui.activity.MainActivity
-import com.hadirahimi.movie.ui.fragments.home.adapters.*
+import com.hadirahimi.movie.ui.fragments.home.adapters.AdapterNewest
+import com.hadirahimi.movie.ui.fragments.home.adapters.AdapterPopularActorsLimited
+import com.hadirahimi.movie.ui.fragments.home.adapters.AdapterPopularMovie
 import com.hadirahimi.movie.ui.fragments.moreMovie.MoreMovieFragmentDirections
-import com.hadirahimi.movie.utils.Constants
-import com.hadirahimi.movie.utils.init
+import com.hadirahimi.movie.utils.*
+import com.hadirahimi.movie.utils.MyResponse.Status.*
+import com.hadirahimi.movie.utils.StoreUserData.Companion.userProfile
 import com.hadirahimi.movie.viewModel.ViewModelHome
-import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 @AndroidEntryPoint
-@Singleton
+@ActivityScoped
 class FragmentHome : Fragment()
 {
     //binding
@@ -53,8 +56,9 @@ class FragmentHome : Fragment()
     @Inject
     lateinit var adapterPopularActorsLimited : AdapterPopularActorsLimited
     
+    // data Store
     @Inject
-    lateinit var adapterGenres : AdapterGenres
+    lateinit var userData : StoreUserData
     
     @Inject
     lateinit var adapterNewest : AdapterNewest
@@ -71,11 +75,6 @@ class FragmentHome : Fragment()
     @Inject
     lateinit var publicGenres : ResponseGenre
     
-    //animation id
-    private var animationId = 16
-    
-    
-    
     
     override fun onCreate(savedInstanceState : Bundle?)
     {
@@ -85,8 +84,7 @@ class FragmentHome : Fragment()
         viewModel.popularActorsLimited()
         viewModel.allGenres()
         viewModel.popularMovies()
-        viewModel.popularMovies()
-    }
+        lifecycleScope.launch { userData.getUserToken().collect{token-> viewModel.userData(token) } } }
     
     
     override fun onCreateView(
@@ -94,10 +92,12 @@ class FragmentHome : Fragment()
     ) : View
     {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(layoutInflater , container , false)
         return binding.root
     }
     
+    
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view : View , savedInstanceState : Bundle?)
     {
         super.onViewCreated(view , savedInstanceState)
@@ -105,86 +105,142 @@ class FragmentHome : Fragment()
         // init views
         binding.apply {
             
-            // get last movie
-            viewModel.lastMovie.observe(viewLifecycleOwner) {
-                
-                if (it?.posterPath != null && it.adult == false)
-                {
-                    cardLastMovie.visibility = View.VISIBLE
-                    tvLastMovieTitle.text = it.title
-                    ivLastMoviePoster.load(Constants.BASE_URL_IMAGE + it.posterPath) {
-                        crossfade(true)
-                        crossfade(1000)
-                    }
+            // setup user image from data store
+            lifecycleScope.launchWhenCreated {
+                //user Name
+                userData.getUserName().collect { userName ->
+                    if (userName.isNotEmpty())
+                    // set user name from dataStore
+                        tvWelcomeUser.text = "Hello $userName \uD83D\uDC4B"
                 }
-                else cardLastMovie.visibility = View.GONE
-                
+               
+            }
+            
+            // setup user profile image from data store
+            lifecycleScope.launchWhenCreated {
+                //user profile
+                userData.getUserProfile().collect { user_profile ->
+                    if (user_profile.isNotEmpty())
+                        // set user name from dataStore
+                        ivProfile.load(user_profile) {
+                            error(R.drawable.ic_default_profile)
+                            crossfade(true)
+                            crossfade(500)
+                        }
+                    else
+                        ivProfile.load(R.drawable.ic_default_profile)
+                    
+        
+                }
+            }
+            
+            
+            lifecycleScope.launchWhenResumed {
+                if ((! publicGenres.genres.isNullOrEmpty()))
+                {
+                    binding.tabGenre.getTabAt(viewModel.selectedTabIndex)?.select()
+                }
             }
             
             // get popular Actors From ViewModel
             viewModel.popularActorsLimited.observe(viewLifecycleOwner) { actors ->
                 
-                //submit adapter list
-                adapterPopularActorsLimited.differ.submitList(actors.results)
-                
-                // init Recyclerview
-                recyclerPopularActors.init(
-                    LinearLayoutManager(
-                        requireContext() , LinearLayoutManager.HORIZONTAL , false
-                    ) , adapterPopularActorsLimited
-                )
+                when (actors.status)
+                {
+                    LOADING ->
+                    {
+                        recyclerPopularActors.visible(false)
+                        loadingActors.visible(true)
+                    }
+                    SUCCESS ->
+                    {
+                        recyclerPopularActors.visible(true)
+                        loadingActors.visible(false)
+                        //submit adapter list
+                        adapterPopularActorsLimited.differ.submitList(actors.data)
+                        
+                        // init Recyclerview
+                        recyclerPopularActors.init(
+                            LinearLayoutManager(
+                                requireContext() , LinearLayoutManager.HORIZONTAL , false
+                            ) , adapterPopularActorsLimited
+                        )
+                    }
+                    ERROR ->
+                    {
+                        recyclerPopularActors.visible(true)
+                        loadingActors.visible(false)
+                        
+                    }
+                }
                 
             }
             
-            // get All Genres From ViewModel
-            viewModel.allGenres.observe(viewLifecycleOwner) { genres ->
-                
-                //make genre list public for filter Newest Movies by Genre
-                publicGenres = genres
-                
-                //submit genre list for newest Movie Adapter
-                adapterNewest.submitGenres(publicGenres)
-                //submit genre list for popular Movie Adapter
-                adapterPopularMovies.submitGenres(publicGenres)
-                
-                //init adapter
-                adapterGenres.differ.submitList(genres.genres)
-                
-                //set Default selected tab as first genre id
-                selectedTabId = genres.genres !![0] !!.id
-                
-                //fill tab Layout tabs as Genres
-                for (genre in genres.genres !!)
+            //user Data
+            viewModel.liveDataUserData.observe(viewLifecycleOwner){userData->
+                when(userData.status)
                 {
-                    //create a new Tab For TabLayout
-                    tabGenre.addTab(tabGenre.newTab().setText(genre?.name).setTag(genre?.id))
+                    SUCCESS->{
+                        val user = userData.data?.data
+                        saveUserData(user)
+                    }
                 }
                 
-                //
-                tabGenre.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener
+            }
+            
+            
+            // get All Genres From ViewModel
+            viewModel.allGenres.observe(requireActivity()) { genres ->
+                when (genres.status)
                 {
-                    override fun onTabSelected(tab : TabLayout.Tab?)
+                    LOADING ->
                     {
-                        if (tab != null) selectedTabId = tab.tag as Int
-                        adapterNewest.refresh()
-                        pushToRecyclerNewest()
+                        showErrorLayout(false)
+                        loadingGenres.visible(true)
                     }
-                    
-                    override fun onTabUnselected(tab : TabLayout.Tab?)
+                    SUCCESS ->
                     {
-                    
+                        
+                        Log.e("DATA" , "genres Done")
+                        showErrorLayout(false)
+                        loadingGenres.visible(false)
+                        
+                        genres.data?.let {
+                            publicGenres = genres.data
+                            //submit genre list for newest Movie Adapter
+                            adapterNewest.submitGenres(it)
+                            //submit genre list for popular Movie Adapter
+                            adapterPopularMovies.submitGenres(it)
+                            
+                            //set Default selected tab as first genre id
+                            if (selectedTabId == - 1)
+                                selectedTabId = it.genres?.get(0) !!.id
+                            
+                            if (tabGenre.tabCount == 0)
+                            {
+                                //fill tab Layout tabs as Genres
+                                for (genre in genres.data.genres !!)
+                                {
+                                    //create a new Tab For TabLayout
+                                    tabGenre.addTab(
+                                        tabGenre.newTab().setText(genre?.name).setTag(genre?.id)
+                                    )
+                                }
+                            }
+                            
+                            
+                        }
                     }
-                    
-                    override fun onTabReselected(tab : TabLayout.Tab?)
+                    ERROR ->
                     {
-                    
+                        loadingGenres.visible(false)
+                        showErrorLayout(true)
                     }
-                    
-                })
+                }
             }
             
             // Newest Movie
-            lifecycleScope.launchWhenCreated {
+            lifecycleScope.launch {
                 
                 viewModel.newestMovie.map {
                     it.filter { response ->
@@ -195,71 +251,24 @@ class FragmentHome : Fragment()
                         else false
                     }
                 }.collect {
-
-                    //adapterNewest = AdapterNewest(requireContext())
-                    adapterNewest.submitGenres(genres = publicGenres)
+                    Log.e("DATA" , "newest Done")
+                    adapterNewest = AdapterNewest(requireContext())
+                    adapterNewest.submitGenres(publicGenres)
                     adapterNewest.submitData(it)
                 }
-                
             }
             pushToRecyclerNewest()
-            
-            
-            //get error connection
-            viewModel.error.observe(viewLifecycleOwner) { error ->
-                if (error)
-                //error in get data show error network to user
-                {
-                    (activity as MainActivity).networkError(true)
-                    layoutMain.visibility = View.GONE
-                }
-                else
-                {
-                    (activity as MainActivity).networkError(false)
-                    layoutMain.visibility = View.VISIBLE
-                }
-                
-            }
-            
-            //loading actors
-            viewModel.loadingActors.observe(viewLifecycleOwner) { isLoading ->
-                if (isLoading)
-                {
-                    recyclerPopularActors.visibility = View.INVISIBLE
-                    loadingActors.visibility = View.VISIBLE
-                }
-                else
-                {
-                    recyclerPopularActors.visibility = View.VISIBLE
-                    loadingActors.visibility = View.GONE
-                }
-            }
-            
-            //loading genre
-            viewModel.loadingGenres.observe(viewLifecycleOwner) { isLoading ->
-                if (isLoading)
-                {
-                    tabGenre.visibility = View.INVISIBLE
-                    loadingGenres.visibility = View.VISIBLE
-                }
-                else
-                {
-                    tabGenre.visibility = View.VISIBLE
-                    loadingGenres.visibility = View.GONE
-                }
-            }
             
             //newest movie Loading
             lifecycleScope.launchWhenCreated {
                 adapterNewest.loadStateFlow.collect {
                     val state = it.refresh
-                    loadingNewest.isVisible = state is LoadState.Loading
+//                    loadingNewest.isVisible = state is LoadState.Loading
                     
                     if (state is LoadState.Loading)
                     {
                         delay(3000)
                         if (adapterNewest.itemCount > 2) recyclerNewest.smoothScrollToPosition(1)
-                        
                     }
                     
                 }
@@ -267,36 +276,68 @@ class FragmentHome : Fragment()
             
             //popular movies
             viewModel.popularMovies.observe(viewLifecycleOwner) { popularMovies ->
-                recyclerPopularMovies.apply {
-                    adapterPopularMovies.differ.submitList(popularMovies.results)
-                    adapter = adapterPopularMovies
-                    set3DItem(true)
-                    setInfinite(true)
-                    setAlpha(true)
-                    setFlat(false)
-                    setIsScrollingEnabled(true)
+                when (popularMovies.status)
+                {
+                    LOADING ->
+                    {
+                        showErrorLayout(false)
+                        loadingPopularMovies.show(true , viewPagerPopularMovies)
+                    }
+                    ERROR ->
+                    {
+                        loadingPopularMovies.visible(false)
+                        showErrorLayout(true)
+                    }
+                    SUCCESS ->
+                    {
+                        Log.e("DATA" , "popular Done")
+                        showErrorLayout(false)
+                        loadingPopularMovies.show(false , viewPagerPopularMovies)
+                        viewPagerPopularMovies.apply {
+                            adapterPopularMovies.submitViewPager(viewPagerPopularMovies)
+                            adapterPopularMovies.differ.submitList(popularMovies.data?.results)
+                            adapter = adapterPopularMovies
+                            offscreenPageLimit = 3
+                            clipToPadding = false
+                            clipChildren = false
+                            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+                        }
+                        
+                    }
                 }
             }
-
-
-//             popular movies Loading
-            viewModel.loadingPopularMovies.observe(viewLifecycleOwner) { isLoading ->
-                if (isLoading)
-                {
-                    recyclerPopularMovies.visibility = View.INVISIBLE
-                    loadingPopularMovies.visibility = View.VISIBLE
-                }
-                else
-                {
-                    recyclerPopularMovies.visibility = View.VISIBLE
-                    loadingPopularMovies.visibility = View.GONE
-                }
-            }
-            
             clickListener()
-            
+        }
+        
+        
+    }
+    
+    private fun saveUserData(user : ResponseUser.Data?)
+    {
+        lifecycleScope.launchWhenCreated {
+            if (user?.image != null && user.name != null)
+                userData.saveUserInfo(user.name as String , user.image as String)
+            else if (user?.image == null && user?.name != null)
+                userData.saveUserInfo(user.name , "")
         }
     }
+    
+    @SuppressLint("SetTextI18n")
+    private fun setUserData(user : ResponseUser.Data?)
+    {
+        binding.apply {
+            tvWelcomeUser.text = "Hello ${user?.name} \uD83D\uDC4B"
+            
+            if (user?.image !=null)
+                ivProfile.load(user.image.toString()){
+                    crossfade(true)
+                    crossfade(500)
+                }
+            else
+                ivProfile.load(R.drawable.ic_default_profile)
+        }
+    }
+    
     
     private fun clickListener()
     {
@@ -304,7 +345,6 @@ class FragmentHome : Fragment()
             //go to search fragment
             tvSearch.setOnClickListener {
                 findNavController().navigate(R.id.action_to_fragmentSearch)
-                (activity as MainActivity).searchSelected()
             }
             //more actor
             tvSeeAllPopularActors.setOnClickListener {
@@ -329,16 +369,44 @@ class FragmentHome : Fragment()
                 val direction = actor.id?.let { FragmentHomeDirections.actionToActorFragment(it) }
                 direction?.let { findNavController().navigate(it) }
             }
-            // go to Movie Detail fragment for newest Movies
-            adapterNewest.setOnItemClickListener { movie ->
-                val direction = movie.id?.let { FragmentHomeDirections.actionToFragmentMovie(it) }
-                direction?.let { findNavController().navigate(it) }
-            }
+            
             // go to Movie Detail fragment for popular movies
             adapterPopularMovies.setOnItemClickListener { movie ->
                 val direction = movie.id?.let { FragmentHomeDirections.actionToFragmentMovie(it) }
                 direction?.let { findNavController().navigate(it) }
             }
+            // when tab item selected
+            tabGenre.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener
+            {
+                override fun onTabSelected(tab : TabLayout.Tab?)
+                {
+                    //if we have any tabs and selected tab is different with previous tab so lets show data
+                    if (tab != null && selectedTabId != tab.tag as Int)
+                    {
+                        //change selected tab id with current tab
+                        selectedTabId = tab.tag as Int
+                        // change selected tab index with current position. because when user press back button fragment save here states
+                        viewModel.selectedTabIndex = tab.position
+                        //refresh adapter for new genre id and new data
+                        adapterNewest.refresh()
+                        // push to recyclerView
+                        pushToRecyclerNewest()
+                    }
+                    
+                    
+                }
+                
+                override fun onTabUnselected(tab : TabLayout.Tab?)
+                {
+                
+                }
+                
+                override fun onTabReselected(tab : TabLayout.Tab?)
+                {
+                
+                }
+                
+            })
         }
     }
     
@@ -360,21 +428,25 @@ class FragmentHome : Fragment()
             
             //single Item Scroll
             pagerNewest.attachToRecyclerView(recyclerNewest)
-
-
-//            lifecycleScope.launchWhenCreated {
-//                //when a tab selected scroll to item 2 for beautiful designLoadStatesAdapter
-//                delay(700)
-//                if (adapterNewest.itemCount > 1)
-//                {
-//                    binding.recyclerNewest.smoothScrollToPosition(1)
-//                }
-//            }
+            
             
         }
         
         
     }
     
-    
+    private fun showErrorLayout(error : Boolean)
+    {
+        if (error)
+        //error in get data show error network to user
+        {
+            (activity as MainActivity).networkError(true)
+            binding.layoutMain.visibility = View.GONE
+        }
+        else
+        {
+            (activity as MainActivity).networkError(false)
+            binding.layoutMain.visibility = View.VISIBLE
+        }
+    }
 }

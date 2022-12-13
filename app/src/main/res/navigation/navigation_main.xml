@@ -13,10 +13,6 @@
         app:destination="@id/fragmentHome"
         app:enterAnim="@anim/nav_default_enter_anim" />
     <action
-        android:id="@+id/action_to_fragmentRegister"
-        app:destination="@id/fragmentRegister"
-        app:enterAnim="@anim/nav_default_enter_anim" />
-    <action
         android:id="@+id/action_to_fragmentLogin"
         app:destination="@id/fragmentLogin"
         app:enterAnim="@anim/nav_default_enter_anim" />
@@ -46,7 +42,9 @@
 
     <action
         android:id="@+id/action_to_fragmentMovie"
-        app:destination="@id/fragmentMovie" />
+        app:destination="@id/fragmentMovie"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
 
     <action
         android:id="@+id/action_to_moreActorFragment"
@@ -73,21 +71,23 @@
 
 
     </fragment>
-
-    <fragment
-        android:id="@+id/fragmentRegister"
-        android:name="com.hadirahimi.movie.ui.fragments.register.FragmentRegister"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register">
-
-
-    </fragment>
+    <action
+        android:id="@+id/action_fragmentLogin_to_verifyEmailFragment"
+        app:destination="@id/verifyEmailFragment" />
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.hadirahimi.movie.ui.fragments.login.FragmentLogin"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
 
+
+        <action
+            android:id="@+id/action_fragmentLogin_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSaved"
@@ -170,6 +170,36 @@
         android:name="com.hadirahimi.movie.ui.fragments.support.SupportFragment"
         android:label="fragment_support"
         tools:layout="@layout/fragment_support" />
+    <fragment
+        android:id="@+id/verifyEmailFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.verifyEmail.VerifyEmailFragment"
+        android:label="fragment_verify_email"
+        tools:layout="@layout/fragment_verify_email" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="cookie"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.hadirahimi.movie.ui.fragments.resetPassword.ResetPasswordFragment"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password">
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="hadi.com/({user_id}" />
+        <argument
+            android:name="user_id"
+            app:argType="integer" />
+    </fragment>
 
 
 </navigation>

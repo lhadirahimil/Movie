@@ -1,6 +1,7 @@
 package com.hadirahimi.movie.ui.fragments.search_nav
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,17 +30,19 @@ class SearchNavFragment : Fragment()
     private lateinit var binding : FragmentSearchNavBinding
     
     // detect search mode by this boolean
-    private var isActors = true
+    
     
     // view Model
     private val viewModel : ViewModelSearch by viewModels()
     
     //adapters
     @Inject
-    lateinit var adapterActor : AdapterSearchActor
+    lateinit var adapterActor : com.hadirahimi.movie.ui.fragments.search.adapter.AdapterSearchActor
     
     @Inject
-    lateinit var adapterMovie : AdapterSearchMovie
+    lateinit var adapterMovie : com.hadirahimi.movie.ui.fragments.search.adapter.AdapterSearchMovie
+    
+    var prevSearch = ""
     
     
     override fun onCreateView(
@@ -55,7 +58,6 @@ class SearchNavFragment : Fragment()
     override fun onViewCreated(view : View , savedInstanceState : Bundle?)
     {
         super.onViewCreated(view , savedInstanceState)
-        
         setupTabLayoutSearchMode()
         clickListener()
         textChangeListener()
@@ -63,67 +65,73 @@ class SearchNavFragment : Fragment()
         
         binding.apply {
             viewModel.actors.observe(viewLifecycleOwner) { actors ->
-                when (actors.status)
+                if (viewModel.isActors)
                 {
-                    MyResponse.Status.LOADING ->
+                    when (actors.status)
                     {
-                        loading.visible(true)
-                    }
-                    MyResponse.Status.EMPTY ->
-                    {
-                        loading.visible(false)
-                        emptyLayout.show(true , recyclerSearch)
-                    }
-                    MyResponse.Status.ERROR ->
-                    {
-                        loading.visible(false)
-                        emptyLayout.visible(false)
-                    }
-                    MyResponse.Status.SUCCESS ->
-                    {
-                        loading.visible(false)
-                        emptyLayout.show(false , recyclerSearch)
-                        
-                        actors.data?.let {
-                            //submit data to adapter
-                            adapterActor.submitData(it.results)
-                            //setup recyclerview
-                            recyclerSearch.init(LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false) , adapterActor)
+                        MyResponse.Status.LOADING ->
+                        {
+                            loading.visible(true)
                         }
-                        
+                        MyResponse.Status.EMPTY ->
+                        {
+                            loading.visible(false)
+                            emptyLayout.show(true , recyclerSearch)
+                        }
+                        MyResponse.Status.ERROR ->
+                        {
+                            loading.visible(false)
+                            emptyLayout.visible(false)
+                        }
+                        MyResponse.Status.SUCCESS ->
+                        {
+                            loading.visible(false)
+                            emptyLayout.show(false , recyclerSearch)
+                            
+                            actors.data?.let {
+                                //submit data to adapter
+                                adapterActor.submitData(it.results)
+                                //setup recyclerview
+                                recyclerSearch.init(LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false) , adapterActor)
+                            }
+                            
+                        }
                     }
                 }
             }
             viewModel.movies.observe(viewLifecycleOwner) { movies ->
-                when (movies.status)
+                if (!viewModel.isActors)
                 {
-                    MyResponse.Status.LOADING ->
+                    when (movies.status)
                     {
-                        loading.visible(true)
-                    }
-                    MyResponse.Status.EMPTY ->
-                    {
-                        loading.visible(false)
-                        emptyLayout.show(true , recyclerSearch)
-                    }
-                    MyResponse.Status.ERROR ->
-                    {
-                        loading.visible(false)
-                        emptyLayout.visible(false)
-                    }
-                    MyResponse.Status.SUCCESS ->
-                    {
-                        loading.visible(false)
-                        emptyLayout.show(false , recyclerSearch)
-                        
-                        movies.data?.let {
-                            //submit data to adapter
-                            adapterMovie.submitData(it.results)
-                            
-                            //setup recyclerview
-                            recyclerSearch.init(LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false) , adapterMovie)
+                        MyResponse.Status.LOADING ->
+                        {
+                            loading.visible(true)
                         }
-                        
+                        MyResponse.Status.EMPTY ->
+                        {
+                            loading.visible(false)
+                            emptyLayout.show(true , recyclerSearch)
+                        }
+                        MyResponse.Status.ERROR ->
+                        {
+                            loading.visible(false)
+                            emptyLayout.visible(false)
+                        }
+                        MyResponse.Status.SUCCESS ->
+                        {
+                            loading.visible(false)
+                            emptyLayout.show(false , recyclerSearch)
+                            
+                            movies.data?.let {
+                                //submit data to adapter
+                                adapterMovie.submitData(it.results)
+                                
+                                //setup recyclerview
+                                recyclerSearch.init(LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false) , adapterMovie)
+                            }
+                            
+                        }
                     }
                 }
             }
@@ -135,16 +143,28 @@ class SearchNavFragment : Fragment()
         findNavController().addOnDestinationChangedListener { _ , destination , _ ->
             if (destination.id == R.id.fragmentSearch)
             {
-                when (isActors)
+                when (viewModel.isActors)
                 {
                     // when come back to this fragment from other fragments. go to last user selected tab
                     true ->
                     {
-                        binding.tabSearchMode.getTabAt(0)?.select()
+                        if (binding.tabSearchMode.selectedTabPosition != 0)
+                        {
+                            Log.d("HECTOR" , "item 0 selected from destination")
+                            binding.tabSearchMode.getTabAt(0)?.select()
+                        }
+                        
+                        
                     }
                     false ->
                     {
-                        binding.tabSearchMode.getTabAt(1)?.select()
+                        if (binding.tabSearchMode.selectedTabPosition != 1)
+                        {
+                            Log.d("HECTOR" , "item 1 selected from destination")
+                            binding.tabSearchMode.getTabAt(1)?.select()
+                        }
+                        
+                        
                     }
                 }
             }
@@ -159,15 +179,17 @@ class SearchNavFragment : Fragment()
                 
                 if (text.toString().length > Constants.SEARCH_LENGTH)
                 {
-                    if (isActors)
+                    if (viewModel.isActors && text.toString() != prevSearch)
                     {
                         //search in actors api
                         viewModel.searchActor(text.toString())
+                        prevSearch = text.toString()
                     }
-                    else
+                    else if (! viewModel.isActors && text.toString() != prevSearch)
                     {
                         //search in movies api
                         viewModel.searchMovie(text.toString())
+                        prevSearch = text.toString()
                     }
                 }
                 
@@ -181,8 +203,11 @@ class SearchNavFragment : Fragment()
     private fun setupTabLayoutSearchMode()
     {
         binding.apply {
-            tabSearchMode.addTab(tabSearchMode.newTab().setText(ConstantsSearchMode.ACTORS))
-            tabSearchMode.addTab(tabSearchMode.newTab().setText(ConstantsSearchMode.MOVIES))
+            if (tabSearchMode.tabCount == 0)
+            {
+                tabSearchMode.addTab(tabSearchMode.newTab().setText(ConstantsSearchMode.ACTORS))
+                tabSearchMode.addTab(tabSearchMode.newTab().setText(ConstantsSearchMode.MOVIES))
+            }
         }
     }
     
@@ -196,7 +221,9 @@ class SearchNavFragment : Fragment()
             {
                 override fun onTabSelected(tab : TabLayout.Tab?)
                 {
+                    Log.d("HECTOR" , "tab selected from tab layout")
                     searchHintByTabMode(tab?.text.toString())
+                    searchWhenTabSelected(tab?.text.toString())
                 }
                 
                 override fun onTabUnselected(tab : TabLayout.Tab?)
@@ -231,22 +258,37 @@ class SearchNavFragment : Fragment()
             }
         }
     }
+    
+    private fun searchWhenTabSelected(tab_title : String)
+    {
+        val searchText = binding.etSearch.text.trim().toString()
+        
+        when(tab_title)
+        {
+            ConstantsSearchMode.MOVIES->{
+                //search in movies api
+                if (viewModel.isActors && searchText.length > Constants.SEARCH_LENGTH)
+                    viewModel.searchMovie(searchText)
+                viewModel.isActors = false
+                
+            }
+            ConstantsSearchMode.ACTORS->{
+                //search in actors api
+                if (!viewModel.isActors && searchText.length > Constants.SEARCH_LENGTH)
+                    viewModel.searchActor(searchText)
+                viewModel.isActors = true
+            }
+        }
+    }
+    
     private fun searchHintByTabMode(tab_title:String){
         when (tab_title)
         {
-            ConstantsSearchMode.ACTORS ->
-            {
-                isActors = true
-                binding.etSearch.hint = "Search a actors ..."
-                
-            }
             
-            ConstantsSearchMode.MOVIES ->
-            {
-                isActors = false
-                binding.etSearch.hint = "Search a movies ..."
-                
-            }
+            ConstantsSearchMode.ACTORS -> binding.etSearch.hint = "Search a actors ..."
+            
+            
+            ConstantsSearchMode.MOVIES -> binding.etSearch.hint = "Search a movies ..."
         }
     }
     

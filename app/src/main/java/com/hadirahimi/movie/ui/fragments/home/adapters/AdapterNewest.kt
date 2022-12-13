@@ -1,20 +1,32 @@
 package com.hadirahimi.movie.ui.fragments.home.adapters
 
+import android.R.attr.category
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.hadirahimi.movie.R
 import com.hadirahimi.movie.databinding.ItemNewestBinding
 import com.hadirahimi.movie.models.home.ResponseGenre
 import com.hadirahimi.movie.models.home.ResponseNowPlayingMovies.Result
+import com.hadirahimi.movie.ui.fragments.home.FragmentHome
+import com.hadirahimi.movie.ui.fragments.moreMovie.MoreMovieFragmentDirections
+import com.hadirahimi.movie.ui.fragments.movieSingle.FragmentMovieDirections
 import com.hadirahimi.movie.utils.Constants
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
+
 
 @ActivityScoped
 class AdapterNewest @Inject constructor(@ApplicationContext val context : Context) :
@@ -24,8 +36,6 @@ class AdapterNewest @Inject constructor(@ApplicationContext val context : Contex
     
     //genre list
     private var genres = ResponseGenre()
-    
-    private var movieList = emptyList<Result>()
     
     inner class MyViewHolder : RecyclerView.ViewHolder(binding.root)
     {
@@ -45,12 +55,8 @@ class AdapterNewest @Inject constructor(@ApplicationContext val context : Contex
                 
                 if (movie.genreIds != null && movie.genreIds.isNotEmpty() && genres.genres?.size != 0)
                 {
-                    
-                    
                     for (genre in genres.genres !!)
                     {
-                        
-                        
                         if (genre?.id == movie.genreIds[0]) tvDateAndGenre.text =
                             genre?.name + " / " + releaseDate
                     }
@@ -66,10 +72,19 @@ class AdapterNewest @Inject constructor(@ApplicationContext val context : Contex
                 tvMovieStar.text = movie.voteAverage.let { movie.voteAverage.toString() }
                 
                 //item click listener
+              
                 root.setOnClickListener {
                     onItemClickListener?.let {
                         it(movie)
                     }
+                     movie.id?.let { it1 ->
+                         val direction = MoreMovieFragmentDirections.actionToFragmentMovie(it1)
+                        
+                        Navigation.findNavController(root).navigate(direction,NavOptions.Builder().setRestoreState(true).build())
+                    }
+                    
+                    
+                    
                 }
             }
         }
@@ -107,7 +122,6 @@ class AdapterNewest @Inject constructor(@ApplicationContext val context : Contex
     }
     
     
-   
     
     
  companion object{
@@ -128,38 +142,6 @@ class AdapterNewest @Inject constructor(@ApplicationContext val context : Contex
              return oldItem == newItem
          }
      }
-     
-//     fun submitData(data : List<Result>)
-//     {
-//         val newestMovieDiffUtils = NewestMovie(movieList , data)
-//         val diffUtils = DiffUtil.calculateDiff(newestMovieDiffUtils)
-//         movieList = data
-//         diffUtils.dispatchUpdatesTo(this)
-//     }
-//
-//     class NewestMovie(private val oldItem : List<Result> , private val newItem : List<Result>) :
-//         DiffUtil.Callback()
-//     {
-//         override fun getOldListSize() : Int
-//         {
-//             return oldItem.size
-//         }
-//
-//         override fun getNewListSize() : Int
-//         {
-//             return newItem.size
-//         }
-//
-//         override fun areItemsTheSame(oldItemPosition : Int , newItemPosition : Int) : Boolean
-//         {
-//             return oldItem[oldItemPosition] === newItem[newItemPosition]
-//         }
-//
-//         override fun areContentsTheSame(oldItemPosition : Int , newItemPosition : Int) : Boolean
-//         {
-//             return oldItem[oldItemPosition] === newItem[newItemPosition]
-//         }
-//     }
  }
     
     

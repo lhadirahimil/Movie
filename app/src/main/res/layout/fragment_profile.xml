@@ -9,6 +9,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/scrollView"
         android:fillViewport="true">
         <!--    container    -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +35,7 @@
 
             <!--  user Avatar  -->
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/userProfile"
+                android:id="@+id/ivUserProfile"
                 android:layout_width="@dimen/_81mdp"
                 android:layout_height="@dimen/_81mdp"
                 android:background="@drawable/rounded_white_shape"
@@ -49,8 +50,8 @@
                 android:layout_width="@dimen/_26mdp"
                 android:layout_height="@dimen/_26mdp"
                 android:src="@drawable/ic_edit_profile"
-                app:layout_constraintBottom_toBottomOf="@id/userProfile"
-                app:layout_constraintRight_toRightOf="@id/userProfile" />
+                app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
+                app:layout_constraintRight_toRightOf="@id/ivUserProfile" />
 
             <!--  user name   -->
             <TextView
@@ -64,7 +65,7 @@
                 android:textSize="@dimen/_16font_mdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/userProfile"
+                app:layout_constraintTop_toBottomOf="@id/ivUserProfile"
                 tools:text="Hadi Rahimi" />
 
 
@@ -300,6 +301,11 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <View
+                android:id="@+id/freeView"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/item_Application_about"
+                android:layout_height="@dimen/_90mdp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

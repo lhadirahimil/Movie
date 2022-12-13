@@ -17,7 +17,7 @@ interface SavedDao
     @Delete
     suspend fun deleteSaved(saved : SavedEntity)
     
-    @Query("SELECT * FROM ${Constants.SAVED_TABLE} ORDER BY server_id DESC")
+    @Query("SELECT * FROM ${Constants.SAVED_TABLE} ORDER BY mode DESC")
     fun getAllSaved() : Flow<List<SavedEntity>>
     
     @androidx.room.Query("SELECT EXISTS (SELECT 1 FROM ${Constants.SAVED_TABLE} WHERE server_id = :server_id)")

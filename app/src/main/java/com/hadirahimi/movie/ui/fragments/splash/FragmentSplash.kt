@@ -49,13 +49,13 @@ class FragmentSplash : Fragment()
                 if (it.isEmpty())
                 {
                     //user not registered
-                 //   findNavController().navigate(R.id.action_to_fragmentLogin)
+                    findNavController().navigate(R.id.action_fragmentSplash_to_welcomeFragment)
                 }else
                 {
                     //user is registered
-                  //  findNavController().navigate(R.id.action_to_fragmentHome)
+                    findNavController().navigate(R.id.action_to_fragmentHome)
                 }
-                findNavController().navigate(R.id.action_to_fragmentHome)
+                
                 
             }
             

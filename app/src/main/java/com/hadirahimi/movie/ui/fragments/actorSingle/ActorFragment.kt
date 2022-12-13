@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -64,7 +66,7 @@ class ActorFragment : Fragment()
     override fun onViewCreated(view : View , savedInstanceState : Bundle?)
     {
         super.onViewCreated(view , savedInstanceState)
-        
+     
         //init View
         binding.apply {
             
@@ -90,14 +92,17 @@ class ActorFragment : Fragment()
                             actorImage.load(R.drawable.actor_avatar) {
                                 crossfade(true)
                                 crossfade(600)
+                                
                             }
                         }
                         else
                         {
                             imageUrl = actor.profilePath.toString()
                             actorImage.load(Constants.BASE_URL_IMAGE + actor.profilePath) {
+                                placeholder(R.drawable.actor_avatar)
                                 crossfade(true)
                                 crossfade(600)
+                                error(R.drawable.actor_avatar)
                             }
                         }
                     }
@@ -108,6 +113,12 @@ class ActorFragment : Fragment()
                     findNavController().navigateUp()
                 }
             }
+            
+            viewModel.error.observe(viewLifecycleOwner){haveError->
+                if (haveError)
+                findNavController().navigateUp()
+            }
+            
             
             
             // actor selected Movie
@@ -175,6 +186,7 @@ class ActorFragment : Fragment()
             onClickListener()
         }
     }
+    
     
     private fun onClickListener()
     {

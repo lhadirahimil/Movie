@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -71,9 +72,16 @@ class MainActivity : AppCompatActivity()
             //check gone error network view
             goneNetworkError()
             
-            if (destination.id == R.id.supportFragment||destination.id == R.id.appAboutFragment || destination.id == R.id.profileEditFragment || destination.id == R.id.fragmentSplash || destination.id == R.id.fragmentLogin || destination.id == R.id.fragmentRegister || destination.id == R.id.actorFragment || destination.id == R.id.fragmentMovie || destination.id == R.id.moreActorFragment || destination.id == R.id.moreMovieFragment) binding.bottomNav.visibility =
+            if (destination.id == R.id.resetPasswordFragment||destination.id == R.id.welcomeFragment || destination.id == R.id.verifyEmailFragment ||destination.id == R.id.supportFragment || destination.id == R.id.fragmentSearch||destination.id == R.id.appAboutFragment || destination.id == R.id.profileEditFragment || destination.id == R.id.fragmentSplash || destination.id == R.id.fragmentLogin ||  destination.id == R.id.actorFragment || destination.id == R.id.fragmentMovie || destination.id == R.id.moreActorFragment || destination.id == R.id.moreMovieFragment) binding.bottomNav.visibility =
                 View.GONE
             else binding.bottomNav.visibility = View.VISIBLE
+            
+            if (destination.id == R.id.fragmentProfile)
+            //change status bar color
+                window.statusBarColor = ResourcesCompat.getColor(resources , R.color.purple , null)
+            else
+            //change status bar color
+                window.statusBarColor = ResourcesCompat.getColor(resources , R.color.background , null)
             
         }
         
@@ -169,7 +177,7 @@ class MainActivity : AppCompatActivity()
             ContextCompat.getDrawable(this@MainActivity , R.drawable.bottom_nav_selected_)
     }
     
-    private fun homeSelected()
+     fun homeSelected()
     {
         deSelectLastItem()
         selectedItem = ConstantsBottomNav.HOME
@@ -207,7 +215,7 @@ class MainActivity : AppCompatActivity()
     
     override fun onBackPressed()
     {
-        if (navController.currentDestination !!.id == R.id.fragmentHome) finish()
+        if (navController.currentDestination !!.id == R.id.fragmentHome ||navController.currentDestination !!.id == R.id.welcomeFragment ) finish()
         super.onBackPressed()
         
         

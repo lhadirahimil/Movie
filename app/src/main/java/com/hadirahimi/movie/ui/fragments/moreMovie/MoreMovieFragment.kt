@@ -210,6 +210,9 @@ class MoreMovieFragment : Fragment()
             val direction = movie.id.let { FragmentHomeDirections.actionToFragmentMovie(it) }
             direction.let { findNavController().navigate(it) }
         }
+        binding.ivClose.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
     
 }

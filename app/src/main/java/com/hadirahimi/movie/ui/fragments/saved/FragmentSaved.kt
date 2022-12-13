@@ -70,11 +70,12 @@ class FragmentSaved : Fragment()
                     MyResponse.Status.EMPTY ->
                     {
                         loading.visible(false)
-                        Toast.makeText(requireContext() , "empty" , Toast.LENGTH_SHORT).show()
+                        empty.show(true,recyclerSaved)
                     }
                     
                     MyResponse.Status.SUCCESS ->
                     {
+                        empty.show(false,recyclerSaved)
                         recyclerSaved.show(true,loading)
                         response.data?.let {
                             

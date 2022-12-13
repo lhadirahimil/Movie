@@ -6,6 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.hadirahimi.movie.R
 import com.hadirahimi.movie.databinding.ItemMoreActorsBinding
 import com.hadirahimi.movie.models.home.ResponsePopularActors.Result
 import com.hadirahimi.movie.utils.Constants
@@ -24,6 +25,7 @@ class AdapterPopularActorsPager @Inject constructor() :
         {
             binding.apply {
                 ivActorsProfile.load(Constants.BASE_URL_IMAGE + actors.profilePath) {
+                    placeholder(R.drawable.actor_avatar)
                     crossfade(true)
                     crossfade(400)
                 }

@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/scrollView"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
@@ -41,6 +42,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/fragmentHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:lines="1"
+                android:layout_marginStart="@dimen/_16mdp"
+                android:text="@string/actor"
+                android:textColor="@color/white_text_color"
+                app:layout_constraintBottom_toBottomOf="@id/btnBack"
+                android:textSize="@dimen/_16font_mdp"
+                app:layout_constraintStart_toEndOf="@id/btnBack"
+                app:layout_constraintTop_toTopOf="@id/btnBack" />
+
             <!--    favorite Button    -->
             <ImageView
                 android:id="@+id/ivFavorite"
@@ -50,6 +66,7 @@
                 android:layout_marginEnd="@dimen/_16mdp"
                 android:background="@drawable/bg_gray"
                 android:padding="@dimen/_5mdp"
+                android:visibility="gone"
                 android:src="@drawable/ic_favorite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +77,7 @@
                 android:layout_width="@dimen/_31mdp"
                 android:layout_height="@dimen/_31mdp"
                 android:layout_marginTop="@dimen/_25mdp"
-                android:layout_marginEnd="@dimen/_8mdp"
+                android:layout_marginEnd="@dimen/_16mdp"
                 android:background="@drawable/bg_gray"
                 android:padding="@dimen/_5mdp"
                 android:src="@drawable/ic_saved"

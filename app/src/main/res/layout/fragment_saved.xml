@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.saved.FragmentSaved">
 
-    <!--  back button  -->
-    <!--    <ImageView-->
-    <!--        android:id="@+id/ivBack"-->
-    <!--        android:layout_width="@dimen/_31mdp"-->
-    <!--        android:layout_height="@dimen/_31mdp"-->
-    <!--        android:layout_marginStart="@dimen/_16mdp"-->
-    <!--        android:visibility="gone"-->
-    <!--        android:layout_marginTop="@dimen/_25mdp"-->
-    <!--        android:background="@drawable/bg_gray"-->
-    <!--        android:padding="@dimen/_5mdp"-->
-    <!--        android:src="@drawable/ic_back"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:ignore="ContentDescription" />-->
-
     <!--  header Title  -->
     <TextView
         android:id="@+id/tvHeaderTitle"
@@ -57,5 +42,24 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="NotSibling" />
+
+
+    <!--  empty view  -->
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/_20mdp"
+        android:fontFamily="@font/roboto_regular"
+        android:visibility="gone"
+        android:text="@string/there_is_no_save"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/_16font_mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHeaderTitle"
+        app:drawableTopCompat="@drawable/ic_empty_save" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.hadirahimi.movie.R
 import com.hadirahimi.movie.databinding.ItemMoreActorsBinding
 import com.hadirahimi.movie.databinding.ItemSearchBinding
 import com.hadirahimi.movie.databinding.ItemSelectedMovieBinding
@@ -35,6 +36,7 @@ class AdapterSearchMoreActor @Inject constructor() : RecyclerView.Adapter<Adapte
             binding.apply {
                 //i can check if image is null so choose a default image
                 ivActorsProfile.load(Constants.BASE_URL_IMAGE + actor.profilePath) {
+                    placeholder(R.drawable.actor_avatar)
                     crossfade(true)
                     crossfade(400)
                 }

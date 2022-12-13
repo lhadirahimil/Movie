@@ -10,7 +10,9 @@ import com.hadirahimi.movie.utils.MyResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,6 +21,8 @@ class ViewModelSearch @Inject constructor(private val repository : RepositorySea
 {
     val actors = MutableLiveData<MyResponse<ResponseActor>>()
     val movies = MutableLiveData<MyResponse<ResponseMovie>>()
+    // detect search mode by this boolean
+    var isActors = true
     
     //search actor Api
     fun searchActor(actorName : String) = viewModelScope.launch {

@@ -66,9 +66,9 @@
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="38"
         android:layout_marginHorizontal="@dimen/_16mdp"
         android:layout_marginTop="@dimen/_16mdp"
+        android:layout_weight="38"
         android:fontFamily="@font/roboto_regular"
         android:gravity="top|center"
         android:lineHeight="@dimen/_19font_mdp"
@@ -78,18 +78,19 @@
         tools:targetApi="p" />
 
     <!--  get start Button  -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGetStart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
         android:layout_marginHorizontal="@dimen/_16mdp"
         android:layout_marginBottom="@dimen/_24mdp"
+        android:layout_weight="9"
         android:background="@drawable/btn_purple"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/get_start"
         android:textAllCaps="false"
-        android:textSize="@dimen/_16font_mdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12font_mdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description" />
 </LinearLayout>

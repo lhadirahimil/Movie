@@ -1,5 +1,6 @@
 package com.hadirahimi.movie.di
 
+import androidx.navigation.Navigator
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.hadirahimi.movie.api.ApiService

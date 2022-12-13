@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.jackandphantom.carouselrecyclerview.view.ReflectionImageView
+        <ImageView
             android:id="@+id/imageCover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -67,7 +67,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_8mdp"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Action / 2022"
+                tools:text="Action / 2022"
+                android:lines="1"
+                android:ellipsize="end"
                 android:textColor="@color/gray_text_color"
                 android:textSize="@dimen/_12font_mdp"
                 app:layout_constraintBottom_toBottomOf="parent"

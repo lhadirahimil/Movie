@@ -20,7 +20,7 @@ class PopularMoviesPagingSource @Inject constructor(private val repository : Rep
         return try
         {
             val currentPage = params.key?:1
-            val response = repository.popularMovies(currentPage)
+            val response = repository.popularMoviesPager(currentPage)
             val data = response.body()?.results?: emptyList()
             val responseData = mutableListOf<ResponsePopularMovies.Result>()
             responseData.addAll(data)

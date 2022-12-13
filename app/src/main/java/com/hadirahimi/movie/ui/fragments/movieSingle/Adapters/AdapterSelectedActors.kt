@@ -26,6 +26,7 @@ class AdapterSelectedActors @Inject constructor() :
                 if (actor.profilePath.isNullOrEmpty())
                 {
                     actorImage.load(R.drawable.actor_avatar) {
+                       
                         crossfade(true)
                         crossfade(600)
                         error(R.drawable.actor_avatar)
@@ -34,6 +35,7 @@ class AdapterSelectedActors @Inject constructor() :
                 else
                 {
                     actorImage.load(Constants.BASE_URL_IMAGE + actor.profilePath) {
+                        placeholder(R.drawable.actor_avatar)
                         crossfade(true)
                         crossfade(600)
                         error(R.drawable.actor_avatar)

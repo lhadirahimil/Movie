@@ -42,7 +42,7 @@ object Module
     // Response : Genre
     @Provides
     @Singleton
-    fun publicGenres() = ResponseGenre()
+    fun provideGenres() = ResponseGenre()
     
 
     

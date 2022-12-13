@@ -48,8 +48,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     //hilt dependency injection
     implementation 'com.google.dagger:hilt-android:2.41'
@@ -102,8 +102,11 @@ dependencies {
     //paging
     implementation "androidx.paging:paging-runtime:3.1.1"
 
-    // rating bar
-    //implementation 'com.github.xckevin:AndroidSmartRatingBar:d4467d590e'
+    //permission manager
+    implementation 'com.karumi:dexter:6.2.3'
+    //animation
+    implementation 'com.github.rommansabbir:AnimationX:2.0'
+
 
 
 }

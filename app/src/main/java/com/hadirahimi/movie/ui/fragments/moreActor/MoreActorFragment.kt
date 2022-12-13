@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.filter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hadirahimi.movie.databinding.FragmentMoreActorBinding
 import com.hadirahimi.movie.ui.fragments.home.FragmentHomeDirections
@@ -21,6 +22,7 @@ import com.hadirahimi.movie.viewModel.ViewModelMoreActor
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.android.scopes.FragmentScoped
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -76,10 +78,19 @@ class MoreActorFragment : Fragment()
             //all actors
             lifecycleScope.launchWhenCreated {
                 //get all actors from paging
-                viewModel.actors.collect {
+                viewModel.actors.map {
+                    it.filter { actor->
+                        //filter porn star actors by id
+                        actor.id !in listOf(3194176,1907997,2710789,3030333,2472212,2590519,1468490,2349944,3371806,1549899,1721615,2243993,2619408,2790319,1721638,1914924,2473962)
+                    }
+                }.collect {
                     if (!isSearch) adapter.submitData(it)
                 }
             }
+    
+    
+    
+
             
             //setup recyclerview
             recyclerActors.init(GridLayoutManager(requireContext() , 3) , adapter)
@@ -128,6 +139,9 @@ class MoreActorFragment : Fragment()
         adapterSearch.setOnItemClickListener { actor ->
             val direction = actor.id.let { FragmentHomeDirections.actionToActorFragment(it) }
             direction.let { findNavController().navigate(it) }
+        }
+        binding.ivClose.setOnClickListener {
+            findNavController().navigateUp()
         }
         
     }

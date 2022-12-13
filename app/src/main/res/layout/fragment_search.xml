@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layoutDirection="ltr"
     android:textDirection="ltr"
-    tools:context=".ui.fragments.search.FragmentSearchNav">
+    tools:context=".ui.fragments.search.FragmentSearch">
 
     <!--    close Button    -->
     <ImageView

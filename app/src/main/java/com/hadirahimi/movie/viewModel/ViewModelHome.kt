@@ -7,163 +7,53 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.hadirahimi.movie.models.home.ResponseGenre
-import com.hadirahimi.movie.models.home.ResponseLastMovie
 import com.hadirahimi.movie.models.home.ResponsePopularActors
 import com.hadirahimi.movie.models.home.ResponsePopularMovies
+import com.hadirahimi.movie.models.home.ResponseUser
 import com.hadirahimi.movie.paging.home.NewestPagingSource
 import com.hadirahimi.movie.repository.RepositoryHome
+import com.hadirahimi.movie.utils.MyResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ViewModelHome @Inject constructor(private val repository : RepositoryHome) : ViewModel()
 {
-    val popularActorsLimited = MutableLiveData<ResponsePopularActors>()
-    val allGenres = MutableLiveData<ResponseGenre>()
-    
-    //val newestMovies = MutableLiveData<ResponseNowPlayingMovies>()
-    val popularMovies = MutableLiveData<ResponsePopularMovies>()
+    val popularActorsLimited = MutableLiveData<MyResponse<List<ResponsePopularActors.Result>>>()
+    val allGenres = MutableLiveData<MyResponse<ResponseGenre>>()
+    val liveDataUserData = MutableLiveData<MyResponse<ResponseUser>>()
+    val popularMovies = MutableLiveData<MyResponse<ResponsePopularMovies>>()
     val error = MutableLiveData<Boolean>()
-    val loadingActors = MutableLiveData<Boolean>()
-    val loadingGenres = MutableLiveData<Boolean>()
+    var selectedTabIndex = 0
     
-    // val loadingNewest = MutableLiveData<Boolean>()
-    val loadingPopularMovies = MutableLiveData<Boolean>()
-    val loadingLastMovie = MutableLiveData<Boolean>()
-    val lastMovie = MutableLiveData<ResponseLastMovie>()
-
-
     
-    val newestMovie = Pager(PagingConfig(1)) {
+    val newestMovie = Pager(PagingConfig(pageSize = 1)) {
         NewestPagingSource(repository)
     }.flow.cachedIn(viewModelScope)
     
     
-    fun popularActorsLimited() = viewModelScope.launch {
-        loadingActors.postValue(true)
-        try
-        {
-            
-            val response = repository.popularActorsLimited()
-            if (response.isSuccessful)
-            {
-                popularActorsLimited.postValue(response.body())
-                error.postValue(false)
-                loadingActors.postValue(false)
-            }
-            else
-            {
-                error.postValue(true)
-                loadingActors.postValue(false)
-            }
-            
-        } catch (e : Exception)
-        {
-            error.postValue(true)
-            loadingActors.postValue(false)
+    fun popularActorsLimited() = viewModelScope.launch(Dispatchers.IO) {
+        repository.popularActorsLimited().collect {
+            popularActorsLimited.postValue(it)
         }
     }
     
-    fun allGenres() = viewModelScope.launch {
-        loadingGenres.postValue(true)
-        try
-        {
-            val response = repository.allGenres()
-            if (response.isSuccessful)
-            {
-                allGenres.postValue(response.body())
-                error.postValue(false)
-                loadingGenres.postValue(false)
-            }
-            else
-            {
-                error.postValue(true)
-                loadingGenres.postValue(false)
-            }
-            
-        } catch (e : Exception)
-        {
-            error.postValue(true)
-            loadingGenres.postValue(false)
-        }
-        
-    }
-
-//    fun movieNewest() = viewModelScope.launch {
-//        //loadingNewest.postValue(true)
-//        try
-//        {
-////            val response = repository.newestMovies()
-////            if (response.isSuccessful)
-////            {
-////                newestMovies.postValue(response.body())
-////                error.postValue(false)
-////                loadingNewest.postValue(false)
-////            }
-////            else
-////            {
-////                error.postValue(true)
-////               // loadingNewest.postValue(false)
-////            }
-//            val newestMovie = Pager(PagingConfig(1)) {
-//                HomeFragPagingSource(repository)
-//            }.flow.cachedIn(viewModelScope)
-//        } catch (e : Exception)
-//        {
-//            error.postValue(true)
-//            //loadingNewest.postValue(false)
-//        }
-//    }
     
-    fun popularMovies() = viewModelScope.launch {
-        loadingPopularMovies.postValue(true)
-        try
-        {
-            val response = repository.popularMovies(1)
-            if (response.isSuccessful)
-            {
-                popularMovies.postValue(response.body())
-                error.postValue(false)
-                loadingPopularMovies.postValue(false)
-            }
-            else
-            {
-                error.postValue(true)
-                loadingPopularMovies.postValue(false)
-            }
-            
-        } catch (e : Exception)
-        {
-            error.postValue(true)
-            loadingPopularMovies.postValue(false)
-        }
+    fun allGenres() = viewModelScope.launch(Dispatchers.IO) {
+        repository.allGenres().collect { allGenres.postValue(it) }
     }
     
-    fun lastMovie()
-    {
-        viewModelScope.launch {
-            loadingLastMovie.postValue(true)
-            try
-            {
-                val response = repository.lastMovie()
-                loadingLastMovie.postValue(false)
-                if (response.isSuccessful)
-                {
-                    lastMovie.postValue(response.body())
-                    error.postValue(false)
-                    loadingLastMovie.postValue(false)
-                }
-                else
-                {
-                    error.postValue(true)
-                    loadingLastMovie.postValue(false)
-                }
-            } catch (e : Exception)
-            {
-                error.postValue(true)
-                loadingLastMovie.postValue(false)
-            }
-        }
+    
+    fun popularMovies() = viewModelScope.launch(Dispatchers.IO) {
+        repository.popularMovies(1).collect { popularMovies.postValue(it) }
+    }
+    fun userData(userToken:String) = viewModelScope.launch (Dispatchers.IO){
+        repository.userData(userToken).collect{ liveDataUserData.postValue(it) }
     }
 }

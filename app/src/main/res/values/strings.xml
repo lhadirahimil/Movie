@@ -28,7 +28,6 @@
     <string name="selected_photos">Selected photos</string>
     <string name="selected_actors">Selected actors</string>
     <string name="similar_movies">Similar movies</string>
-    <string name="hello_hadi">Hello Hadi 👋</string>
     <string name="ops_please_try_again">Ops! please try again!</string>
     <string name="welcome_to_your_application">Welcome to your application</string>
     <string name="in_this_application_you_can_see_the_new_movies_of_n_the_world_as_well_as_the_movies_that_are_being_n_screened_you_can_also_see_the_biography_of_your_n_favorite_actors">In this application, you can see the new movies of the world as well as the movies that are being screened. You can also see the biography of your favorite actors</string>
@@ -42,11 +41,33 @@
     <string name="user_name_edit">User name</string>
     <string name="log_out">Log out</string>
     <string name="you_can_send_us_your_criticism_opinion_and_message_and_we_will_answer_you_quickly_the_answer_will_be_sent_to_your_email">You can send us your criticism, opinion and message and we will answer you quickly The answer will be sent to your email</string>
-    <string name="email">email</string>
+    <string name="email">Email</string>
     <string name="text">text</string>
     <string name="send">Send</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="remove">Remove</string>
+    <string name="please_accept_permission_to_continue">Please accept permission to continue</string>
+    <string name="request">Request</string>
+    <string name="cancel">Cancel</string>
+    <string name="please_choose_a_new_name">Please choose a new name</string>
+    <string name="current_password">current password</string>
+    <string name="new_password">new password</string>
+    <string name="try_new_password">try new password</string>
+    <string name="please_choose_a_new_password">Please choose a new password</string>
+    <string name="movie">Movie</string>
+    <string name="actor">Actor</string>
+    <string name="there_is_no_save">There is no save</string>
+    <string name="verify_account">Verify Account</string>
+    <string name="please_enter_the_code_sent_to_your_email">Please enter the code sent to your email</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="no_worrise_we_ll_send_you_reset_intructions">No worrise, we’ll send you reset intructions</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="send_again_mail">Didn\'t receive the email?</string>
+    <string name="click_to_resend">Click to resend</string>
+    <string name="the_password_or_username_is_incorrect">The password or username is incorrect</string>
+    <string name="the_user_name_is_empty_or_format_is_invalid">The user name is empty or format is invalid.</string>
+    <string name="the_email_entered_is_incorrect">The mail is empty or format is invalid.</string>
 
 </resources>
